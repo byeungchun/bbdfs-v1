@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://abc123:kwonsan123@cluster0-rcqvh.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://abc123:kwonsan123@cluster0-rcqvh.mongodb.net/test?retryWrites=true&w=majority",
+  "mongoURIlocal": "mongodb://127.0.0.1:27017/bbdfs"
 }

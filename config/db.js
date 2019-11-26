@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const config = require("config");
-const db = config.get("mongoURI");
+const db = config.get("mongoURIlocal");
 
 const connectDB = async () => {
   try {
+    console.log("Startig to connect MongoDB");
     await mongoose.connect(db, {
       useUnifiedTopology: true,
       useNewUrlParser: true
