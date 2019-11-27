@@ -2,13 +2,36 @@ import React from "react";
 import FileUpload from "./components/reporting/FileUpload";
 import "./App.css";
 
-const App = () => (
-  <div className="container mt-4">
-    <h4 className="display-4 text-center mb-4">
-      <i className="fab fa-react"></i> React File Upload
-    </h4>
-    <FileUpload />
-  </div>
-);
+class App extends Component {
+  state = { loading: true, drizzleState: null };
 
-export default App;
+  componentDidMount() {
+    const { drizzle } = this.props;
+
+    // subscribe to changes in the store
+    this.unsubscribe = drizzle.store.subscribe(() => {
+      // every time the store updates, grab the state from drizzle
+      const drizzleState = drizzle.store.getState();
+
+      // check to see if it's ready, if so, update local component state
+      if (drizzleState.drizzleStatus.initialized) {
+        this.setState({ loading: false, drizzleState });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  render() {
+    if (this.state.loading) return "Loading Drizzle...";
+    return;
+    <div className="container mt-4">
+      <h4 className="display-4 text-center mb-4">
+        <i className="fab fa-react"></i> Drizzle is ready
+      </h4>
+      <FileUpload />
+    </div>;
+  }
+}
