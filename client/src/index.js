@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
 // import drizzle functions and contract artifact
-import { Drizzle, generateStore } from "@drizzle/store";
+import { Drizzle, generateStore } from "drizzle";
 import MyStringStore from "./contracts/MyStringStore.json";
 
 // let drizzle know what contracts we want and how to access our test blockchain
@@ -20,4 +21,4 @@ const options = {
 // setup the drizzle store and drizzle
 const drizzle = new Drizzle(options);
 
-ReactDOM.render(<App dirzzle={drizzle} />, document.getElementById("root"));
+ReactDOM.render(<App drizzle={drizzle} />, document.getElementById("root"));

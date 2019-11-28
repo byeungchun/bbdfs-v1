@@ -10,14 +10,14 @@ connectDB();
 app.use(fileUpload());
 app.use(express.json({ extended: false }));
 
-// app.use(
-//   multer({
-//     dest: "/client/public/uploads/",
-//     rename: function(fieldname, filename) {
-//       return filename;
-//     }
-//   })
-// );
+app.use(
+  multer({
+    dest: "/client/public/uploads/",
+    rename: function(fieldname, filename) {
+      return filename;
+    }
+  }).any()
+);
 
 app.use("/api/upload", require("./routes/upload"));
 // Upload Endpoint
