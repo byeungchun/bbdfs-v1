@@ -23,10 +23,11 @@ router.post("/", async (req, res) => {
     //   filename,
     //   data
     // });
+
     await df.save((err, room) => {
+      res.send(room._id);
       console.log("doc id", room._id);
     });
-    res.send("File saved");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
