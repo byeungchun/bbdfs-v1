@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+
 import Message from "./Message";
 import Progress from "./Progress";
 
-const FileUpload = () => {
+const FileUpload = ({ drizzle, drizzleState }) => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
@@ -13,6 +15,16 @@ const FileUpload = () => {
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
+  };
+
+  const setObjId2Contract = value => {
+    //const { drizzle, drizzleState } = this.props;
+    const contract = drizzle.contracts.MyStringStore;
+
+    // let drizzle know we want to call the `set` method with `value`
+    const stackId = contract.methods["set"].cacheSend(value, {
+      from: drizzleState.accounts[0]
+    });
   };
 
   const onSubmit = async e => {
@@ -34,11 +46,13 @@ const FileUpload = () => {
           setTimeout(() => setUploadPercentage(0), 10000);
         }
       });
-      const { fileName, filePath } = res.data;
-      setUploadedFile({
-        fileName,
-        filePath
-      });
+      const objectId = res.data;
+      setObjId2Contract(objectId);
+      // const { fileName, filePath } = res.data;
+      // setUploadedFile({
+      //   fileName,
+      //   filePath
+      // });
       setMessage("File Uploaded");
     } catch (err) {
       if (err.response.status === 500) {
@@ -85,6 +99,11 @@ const FileUpload = () => {
       ) : null}
     </Fragment>
   );
+};
+
+FileUpload.propTypes = {
+  drizzle: PropTypes.object.isRequired,
+  drizzleState: PropTypes.object.isRequired
 };
 
 export default FileUpload;

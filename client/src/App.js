@@ -33,7 +33,10 @@ class App extends Component {
         <h4 className="display-4 text-center mb-4">
           <i className="fab fa-react"></i> Drizzle is ready
         </h4>
-        <FileUpload />
+        <FileUpload
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
+        />
         <ReadString
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}
