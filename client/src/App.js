@@ -30,9 +30,9 @@ class App extends Component {
     if (this.state.loading) return "Loading Drizzle...";
     return (
       <div className="container mt-4">
-        <h4 className="display-4 text-center mb-4">
-          <i className="fab fa-react"></i> Drizzle is ready
-        </h4>
+        <h3 className="text-center mb-4">
+          <i className="fab fa-react"></i> Distributed File Exchange App
+        </h3>
         <FileUpload
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}

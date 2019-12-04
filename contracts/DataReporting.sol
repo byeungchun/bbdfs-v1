@@ -6,7 +6,7 @@ contract DataReporting {
   
   bool public downloadable; // It set true when owner set DataObjectId
   mapping(uint256 => bool) usedNonces;
-  string public dataObjectId = "object id"; //Owner takes a data object id when he uploads a file to database
+  string dataObjectId = "object id"; //Owner takes a data object id when he uploads a file to database
 
   constructor() public {
       downloadable = false;

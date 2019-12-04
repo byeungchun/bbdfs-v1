@@ -10,11 +10,16 @@ const FileUpload = ({ drizzle, drizzleState }) => {
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState("");
+  const [receiverAddress, setReceiverAddress] = useState("");
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const onChange = e => {
-    setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
+    if (e.target.id === 'customFile') {
+      setFile(e.target.files[0]);
+      setFilename(e.target.files[0].name);
+    } else if (e.target.id === 'receiverAddress') {
+      setReceiverAddress(e.target.value);
+    }
   };
 
   const setObjId2Contract = value => {
@@ -25,6 +30,13 @@ const FileUpload = ({ drizzle, drizzleState }) => {
     const stackId = contract.methods["setDataOjectId"].cacheSend(value, {
       from: drizzleState.accounts[0]
     });
+    return drizzle.web3.utils.soliditySha3(
+      {
+        "address": drizzleState.accounts[0],
+        "unit256": 10001,
+        "address": receiverAddress
+      }
+    );
   };
 
   const onSubmit = async e => {
@@ -47,13 +59,14 @@ const FileUpload = ({ drizzle, drizzleState }) => {
         }
       });
       const objectId = res.data;
-      setObjId2Contract(objectId);
+      const messageToReceiver = setObjId2Contract(objectId);
       // const { fileName, filePath } = res.data;
       // setUploadedFile({
       //   fileName,
       //   filePath
       // });
-      setMessage("File Uploaded");
+      //console.log(messageToReceiver);
+      setMessage('message for sender: ' + messageToReceiver);
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
@@ -66,7 +79,16 @@ const FileUpload = ({ drizzle, drizzleState }) => {
     <Fragment>
       {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
+        <div>
+          <input
+            type="text"
+            id="receiverAddress"
+            placeholder="Receiver address"
+            onChange={onChange}
+          />
+        </div>
         <div className="custom-file mb-4">
+
           <input
             type="file"
             className="custom-file-input"
