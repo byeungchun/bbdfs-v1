@@ -19,10 +19,10 @@ const FileUpload = ({ drizzle, drizzleState }) => {
 
   const setObjId2Contract = value => {
     //const { drizzle, drizzleState } = this.props;
-    const contract = drizzle.contracts.MyStringStore;
+    const contract = drizzle.contracts.DataReporting;
 
     // let drizzle know we want to call the `set` method with `value`
-    const stackId = contract.methods["set"].cacheSend(value, {
+    const stackId = contract.methods["setDataOjectId"].cacheSend(value, {
       from: drizzleState.accounts[0]
     });
   };
