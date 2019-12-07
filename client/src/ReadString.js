@@ -24,7 +24,7 @@ class ReadString extends React.Component {
     const dataObjectId = DataReporting.dataObjectId[this.state.dataKey];
 
     // if it exists, then we display its value
-    return <p>My stored string: {dataObjectId && dataObjectId.value}</p>;
+    return <p>MongoDB Object ID: {dataObjectId && dataObjectId.value}</p>;
   }
 }
 

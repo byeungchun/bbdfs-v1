@@ -31,7 +31,7 @@ class App extends Component {
     return (
       <div className="container mt-4">
         <h3 className="text-center mb-4">
-          <i className="fab fa-react"></i> Distributed File Exchange App
+          <i className="fab fa-react"></i> Decentralized File Exchange App
         </h3>
         <FileUpload
           drizzle={this.props.drizzle}

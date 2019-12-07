@@ -30,11 +30,17 @@ const FileUpload = ({ drizzle, drizzleState }) => {
     const stackId = contract.methods["setDataOjectId"].cacheSend(value, {
       from: drizzleState.accounts[0]
     });
-    return drizzle.web3.utils.soliditySha3({
-      address: receiverAddress, //recipient address
-      unit256: 10001,
-      address: contract.address //contract address
-    });
+    // return drizzle.web3.utils.soliditySha3({
+    //   address: receiverAddress, //recipient address
+    //   unit256: 10001,
+    //   address: contract.address //contract address
+    // });
+
+    return drizzle.web3.utils.soliditySha3(
+      receiverAddress, //recipient address
+      drizzle.web3.utils.toHex(101),
+      contract.address //contract address
+    );
   };
 
   const onSubmit = async e => {
