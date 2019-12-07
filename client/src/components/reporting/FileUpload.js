@@ -14,10 +14,10 @@ const FileUpload = ({ drizzle, drizzleState }) => {
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const onChange = e => {
-    if (e.target.id === 'customFile') {
+    if (e.target.id === "customFile") {
       setFile(e.target.files[0]);
       setFilename(e.target.files[0].name);
-    } else if (e.target.id === 'receiverAddress') {
+    } else if (e.target.id === "receiverAddress") {
       setReceiverAddress(e.target.value);
     }
   };
@@ -30,13 +30,11 @@ const FileUpload = ({ drizzle, drizzleState }) => {
     const stackId = contract.methods["setDataOjectId"].cacheSend(value, {
       from: drizzleState.accounts[0]
     });
-    return drizzle.web3.utils.soliditySha3(
-      {
-        "address": drizzleState.accounts[0],
-        "unit256": 10001,
-        "address": receiverAddress
-      }
-    );
+    return drizzle.web3.utils.soliditySha3({
+      address: receiverAddress, //recipient address
+      unit256: 10001,
+      address: contract.address //contract address
+    });
   };
 
   const onSubmit = async e => {
@@ -66,7 +64,7 @@ const FileUpload = ({ drizzle, drizzleState }) => {
       //   filePath
       // });
       //console.log(messageToReceiver);
-      setMessage('message for sender: ' + messageToReceiver);
+      setMessage("message for sender: " + messageToReceiver);
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
@@ -88,7 +86,6 @@ const FileUpload = ({ drizzle, drizzleState }) => {
           />
         </div>
         <div className="custom-file mb-4">
-
           <input
             type="file"
             className="custom-file-input"

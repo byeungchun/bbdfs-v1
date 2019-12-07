@@ -1,0 +1,35 @@
+'0x615c779e02ca538e15b21f80283a5514829f3ee9337d8415a2bd8b44e84817a5'
+'0x29a5ff8cc8cc53d5825b5a0feaafe640f5e6b04df8801deaf9a17e6fd8fdf764'
+
+web3.utils.keccak256(web3.utils.toHex('a')) == keccak256(abi.encodePacked('a'));
+
+ 000000000000000000000000000000000000000000000000000000000000006f
+ 000000000000000000000000000000000000000000000000000000000000006f'
+
+ web3.utils.keccak256(web3.utils.toHex('ab')) == bytes32 public message2 = keccak256(abi.encodePacked(foo,bar));
+
+
+(Solidity)
+string foo = 'a';
+uint8 bar = 111;
+bytes public message2 = abi.encodePacked(foo,bar);
+
+==
+
+web3.utils.keccak256([web3.utils.toHex('a'),web3.utils.numberToHex(111)]);
+
+
+
+address = '0x37161E65042818f0ef1E53DBA6597D68a8ab90A8'
+contract = '0x8C6e488071d0bEDEd33E59676523d52c858b61d2'
+_nonce = 101
+
+web3.utils.soliditySha3(address,web3.utils.toHex(_nonce),contract)
+'0x038f24251353c7eb8269662ab83460e9cbcdbf6858fe78dcf182d1c675447313'
+
+
+address  _sender = 0x37161E65042818f0ef1E53DBA6597D68a8ab90A8;
+uint8 _nonce = 101;
+address _contract = 0x8C6e488071d0bEDEd33E59676523d52c858b61d2;
+bytes32 public message3 = keccak256(abi.encodePacked(_sender,_nonce,_contract));
+
