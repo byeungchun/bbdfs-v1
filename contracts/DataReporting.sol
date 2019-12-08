@@ -18,16 +18,16 @@ contract DataReporting {
     downloadable = true;
   }
 
-  function getDataObjectId(uint256 nonce, bytes32 signature) public returns(string memory) {
+  function getDataObjectId(uint8 nonce, bytes32 signature) public returns(string memory) {
+      
       require(!usedNonces[nonce]);
       usedNonces[nonce] = true;
       
       bytes32 message = keccak256(abi.encodePacked(msg.sender, nonce, this));
       
       require(message == signature);
-      string memory resId = dataObjectId; // Remove assigned dataOjectId value once it returns
-      initDataObjectId();
-      return resId;
+      
+      return dataObjectId;
   }
 
   ///If receiver doesn't take data object ID within 5 minutes, owner remove ID 

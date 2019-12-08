@@ -9,8 +9,6 @@ class ReadString extends React.Component {
 
     // let drizzle know we want to watch the `myString` method
     const dataKey = contract.methods["dataObjectId"].cacheCall();
-    //const dataKey = contract.methods["getDataObjectId2"].cacheSend();
-
     // save the `dataKey` to local component state for later reference
     this.setState({ dataKey });
   }
