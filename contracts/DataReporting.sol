@@ -5,9 +5,9 @@ contract DataReporting {
   address owner = msg.sender;
   
   bool public downloadable; // It set true when owner set DataObjectId
-  mapping(uint256 => bool) usedNonces;
-  string public dataObjectId = "object id"; //Owner takes a data object id when he uploads a file to database
-
+  mapping(uint8 => bool) usedNonces;
+  string public dataObjectId = ""; //Owner takes a data object id when he uploads a file to database
+  bool public status101 = false;
   constructor() public {
       downloadable = false;
   }
@@ -19,7 +19,7 @@ contract DataReporting {
   }
 
   function getDataObjectId(uint8 nonce, bytes32 signature) public returns(string memory) {
-      
+     
       require(!usedNonces[nonce]);
       usedNonces[nonce] = true;
       
