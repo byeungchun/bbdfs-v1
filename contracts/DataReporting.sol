@@ -7,9 +7,11 @@ contract DataReporting {
   bool public downloadable; // It set true when owner set DataObjectId
   mapping(uint8 => bool) usedNonces;
   string public dataObjectId = ""; //Owner takes a data object id when he uploads a file to database
-  bool public status101 = false;
+  bool public status101;
+  string _sender = "";
   constructor() public {
       downloadable = false;
+      status101 = false;
   }
 
   function setDataOjectId(string memory x) public {
@@ -19,15 +21,20 @@ contract DataReporting {
   }
 
   function getDataObjectId(uint8 nonce, bytes32 signature) public returns(string memory) {
-     
-      require(!usedNonces[nonce]);
+      require(!usedNonces[nonce], "It is already downloaded");
       usedNonces[nonce] = true;
       
       bytes32 message = keccak256(abi.encodePacked(msg.sender, nonce, this));
       
-      require(message == signature);
+      require(message == signature, "Message is not original");
       
       return dataObjectId;
+  }
+
+  function setNonce(uint8 nonce, bytes32 signature) public {
+    bytes32 message = keccak256(abi.encodePacked(msg.sender, nonce, this));
+    require(message == signature, "It is not from receiver");
+    usedNonces[nonce] = true;
   }
 
   ///If receiver doesn't take data object ID within 5 minutes, owner remove ID 

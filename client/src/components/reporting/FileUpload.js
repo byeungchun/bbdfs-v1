@@ -38,7 +38,7 @@ const FileUpload = ({ drizzle, drizzleState }) => {
 
     return drizzle.web3.utils.soliditySha3(
       receiverAddress, //recipient address
-      drizzle.web3.utils.toHex(101),
+      drizzle.web3.utils.toHex(110),
       contract.address //contract address
     );
   };

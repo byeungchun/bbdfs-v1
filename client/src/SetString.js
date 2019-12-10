@@ -24,14 +24,21 @@ class SetString extends React.Component {
     //   "0xe310ede95fdba52db146d616b18906c91b2117172beda8dc4edfebf1d21e8f6f"
     // );
     const stackId = 0;
+    const _nonce = 110;
     contract.methods
-      .getDataObjectId(101, value)
-      .call()
+      .getDataObjectId(_nonce, value)
+      .call({
+        from: drizzleState.accounts[1]
+      })
       .then(res => {
         const objectId = res;
         console.log(objectId);
         this.setState({ objectId });
       });
+
+    const nonceId = contract.methods["setNonce"].cacheSend(_nonce, value, {
+      from: drizzleState.accounts[1]
+    });
 
     // save the `stackId` for later reference
     this.setState({ stackId });
