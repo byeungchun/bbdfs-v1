@@ -2,11 +2,16 @@
 
 `DeFES` is a Web and Block chain application to provide a file exchange system. 
 
+
 ![](structure.png)
+
+
 
 
 ### Installation
 [Ganache](https://www.trufflesuite.com/ganache) is a test blockchain network in this application. 
+
+
 
 
 ### Addtional installation step for Windows 10
