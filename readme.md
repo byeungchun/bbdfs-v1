@@ -2,7 +2,7 @@
 
 `DeFES` is a Web and Block chain application to provide a file exchange system. 
 
-![structure](https://github.com/byeungchun/bbdfs-v1/edit/master/structure.png =400x "DeCFS Structure")
+![structure](https://github.com/byeungchun/bbdfs-v1/edit/master/structure.png =400x)
 
 
 ### Installation
