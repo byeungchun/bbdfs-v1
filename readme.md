@@ -9,7 +9,7 @@
 
 
 ### Installation
-[Ganache](https://www.trufflesuite.com/ganache) is a test blockchain network in this application. 
+This application uses [Ganache](https://www.trufflesuite.com/ganache) as a blockchain service. 
 
 
 
