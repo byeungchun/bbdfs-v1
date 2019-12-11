@@ -2,6 +2,8 @@
 
 `DeFES` is a Web and Block chain application to provide a file exchange system. 
 
+[!alt text](https://github.com/byeungchun/bbdfs-v1/edit/master/structure.png "DeCFS Structure")
+
 
 ### Installation
 [Ganache](https://www.trufflesuite.com/ganache) is a test blockchain network in this application. 
