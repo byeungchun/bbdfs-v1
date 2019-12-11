@@ -1,7 +1,19 @@
+## DeCFES (Decentralized File Exchange System)
+
+`DeFES` is a Web and Block chain application to provide a file exchange system. 
+
+
+### Installation
+[Ganache](https://www.trufflesuite.com/ganache) is a test blockchain network in this application. 
+
+
 ### Addtional installation step for Windows 10
+To install node packages in Windows 10, the specific windows-build-tools version is required.
 
-- To install drizzle in Windows 10, it require specific verion of node and windows-build-tools
+* `npm install -g --production windows-build-tools --vs2015`
 
-    npm install -g --production windows-build-tools --vs2015
-    npm install node@8.16.0
-    npm install drizzle
+
+**Example:**
+```Node 
+npm install
+npm run dev
