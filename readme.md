@@ -2,7 +2,7 @@
 
 `DeFES` is a Web and Block chain application to provide a file exchange system. 
 
-![](structure.png =400x)
+![](structure.png)
 
 
 ### Installation
