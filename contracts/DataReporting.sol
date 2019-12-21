@@ -35,6 +35,7 @@ contract DataReporting {
     bytes32 message = keccak256(abi.encodePacked(msg.sender, nonce, this));
     require(message == signature, "It is not from receiver");
     usedNonces[nonce] = true;
+    dataObjectId = "taken";
   }
 
   ///If receiver doesn't take data object ID within 5 minutes, owner remove ID 

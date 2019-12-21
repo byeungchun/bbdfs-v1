@@ -7,6 +7,7 @@ import Progress from "./Progress";
 
 const FileUpload = ({ drizzle, drizzleState }) => {
   const [file, setFile] = useState("");
+  const [nonceNum, setNonceNum] = useState(0);
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState("");
@@ -19,6 +20,8 @@ const FileUpload = ({ drizzle, drizzleState }) => {
       setFilename(e.target.files[0].name);
     } else if (e.target.id === "receiverAddress") {
       setReceiverAddress(e.target.value);
+    } else if (e.target.id === "nonceNum") {
+      setNonceNum(e.target.value);
     }
   };
 
@@ -38,7 +41,7 @@ const FileUpload = ({ drizzle, drizzleState }) => {
 
     return drizzle.web3.utils.soliditySha3(
       receiverAddress, //recipient address
-      drizzle.web3.utils.toHex(110),
+      drizzle.web3.utils.toHex(129),
       contract.address //contract address
     );
   };
@@ -84,12 +87,19 @@ const FileUpload = ({ drizzle, drizzleState }) => {
       {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
         <div>
+          <p>Sender: 0xf7b94F9D16044306176f84Ac9DA8d2E323f2a1Af </p>
           <input
             type="text"
             id="receiverAddress"
             placeholder="Receiver address"
             onChange={onChange}
           />
+          {/* <input
+            type="text"
+            id="nonceNum"
+            placeholder="Nonce"
+            onChange={onChange}
+          /> */}
         </div>
         <div className="custom-file mb-4">
           <input

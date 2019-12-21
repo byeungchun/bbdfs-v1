@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 class SetString extends React.Component {
-  state = { stackId: null, objectId: null };
+  state = { stackId: null, objectId: null, _accountAddr: null };
 
   handleKeyDown = e => {
     // if the enter key is pressed, set the value with the string
     if (e.keyCode === 13) {
       this.setValue(e.target.value);
     }
+  };
+
+  onChange = e => {
+    const _accountAddr = e.target.value;
+    this.setState({ _accountAddr });
   };
 
   setValue = value => {
@@ -24,21 +29,27 @@ class SetString extends React.Component {
     //   "0xe310ede95fdba52db146d616b18906c91b2117172beda8dc4edfebf1d21e8f6f"
     // );
     const stackId = 0;
-    const _nonce = 110;
+    const _nonce = 129;
+    const _account = 1;
     contract.methods
       .getDataObjectId(_nonce, value)
       .call({
-        from: drizzleState.accounts[1]
+        //from: this.state._accountAddr //
+        from: drizzleState.accounts[_account]
       })
       .then(res => {
         const objectId = res;
         console.log(objectId);
         this.setState({ objectId });
+        contract.methods["setNonce"].cacheSend(_nonce, value, {
+          //from: this.state._accountAddr //
+          from: drizzleState.accounts[_account]
+        });
       });
 
-    const nonceId = contract.methods["setNonce"].cacheSend(_nonce, value, {
-      from: drizzleState.accounts[1]
-    });
+    // const nonceId = contract.methods["setNonce"].cacheSend(_nonce, value, {
+    //   from: drizzleState.accounts[_account]
+    // });
 
     // save the `stackId` for later reference
     this.setState({ stackId });
@@ -62,6 +73,13 @@ class SetString extends React.Component {
   render() {
     return (
       <div>
+        <h3 className="text-left">File Receiver</h3>
+        <input
+          type="text"
+          id="receiverAddress"
+          placeholder="Receiver address"
+          onChange={this.onChange}
+        />
         <input type="text" onKeyDown={this.handleKeyDown} />
         <div>{this.getTxStatus()}</div>
         <div>
