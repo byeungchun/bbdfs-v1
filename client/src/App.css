@@ -183,6 +183,12 @@ img {
   grid-gap: 2rem;
 }
 
+.grid-row-4 {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
 .btn {
   display: inline-block;
   background: var(--light-color);
@@ -386,22 +392,17 @@ table th {
 
 /* Animation (Add After) */
 .item-enter {
-  opacity: 0.01;
+  opacity: 0;
 }
-
 .item-enter-active {
   opacity: 1;
   transition: opacity 1000ms ease-in;
 }
-
 .item-exit {
   opacity: 1;
-  /* transform: translateX(0); */
 }
-
 .item-exit-active {
-  opacity: 0.01;
-  /* transform: translateX(1000px); */
+  opacity: 0;
   transition: opacity 1000ms ease-in;
 }
 
