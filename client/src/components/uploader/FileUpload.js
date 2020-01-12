@@ -17,10 +17,10 @@ const FileUploader = () => {
   const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     try {
-      const res = await axios.post('/api/upload', formData, {
+      const res = await axios.post("/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -28,7 +28,7 @@ const FileUploader = () => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
   return (
     <ReceiverState>
       <Fragment>
@@ -44,14 +44,16 @@ const FileUploader = () => {
                 id="customFile"
                 onChange={onChange}
               />
-              <input type="submit"
-                value="Upload" className="btn btn-primary btn-block mt-4" />
+              <input
+                type="submit"
+                value="Upload"
+                className="btn btn-primary btn-block mt-4"
+              />
               <label className="custom-file-label" htmlFor="customFile">
                 {filename}
               </label>
             </div>
           </div>
-
         </form>
       </Fragment>
     </ReceiverState>
