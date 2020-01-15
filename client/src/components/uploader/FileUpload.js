@@ -9,7 +9,18 @@ import ReceiverState from "../../context/receiver/ReceiverState";
 const FileUploader = () => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
+  const crypto2 = require("crypto");
 
+  const keygen = length => {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{};:,.<>";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  };
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
@@ -18,6 +29,8 @@ const FileUploader = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("cipher_key", crypto2.randomBytes(16).toString("base64"));
+    formData.append("init_vector", crypto2.randomBytes(16).toString("base64"));
 
     try {
       const res = await axios.post("/api/upload", formData, {
